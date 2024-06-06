@@ -4,13 +4,37 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="50" />
     <Property Name="material" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="razmer" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="color" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="photo" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="filePath" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Otvetstvenie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="doljnost" Type="nvarchar" MaxLength="50" />
+    <Property Name="photo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Plan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_merch" Type="int" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="material" Type="nvarchar" MaxLength="50" />
+    <Property Name="razmer" Type="nvarchar" MaxLength="50" />
+    <Property Name="color" Type="nvarchar" MaxLength="50" />
+    <Property Name="photo" Type="nvarchar" MaxLength="50" />
+    <Property Name="filePath" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_otvetst" Type="int" />
+    <Property Name="count" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -38,6 +62,30 @@
     <Property Name="password" Type="nvarchar" MaxLength="50" />
     <Property Name="id_role" Type="int" />
   </EntityType>
+  <Association Name="FK_Plan_Merch">
+    <End Role="Merch" Type="Self.Merch" Multiplicity="0..1" />
+    <End Role="Plan" Type="Self.Plan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Merch">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Plan">
+        <PropertyRef Name="id_merch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Plan_Otvetstvenie">
+    <End Role="Otvetstvenie" Type="Self.Otvetstvenie" Multiplicity="0..1" />
+    <End Role="Plan" Type="Self.Plan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Otvetstvenie">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Plan">
+        <PropertyRef Name="id_otvetst" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Users_Role">
     <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -52,9 +100,19 @@
   </Association>
   <EntityContainer Name="Хранилище ModelContainer">
     <EntitySet Name="Merch" EntityType="Self.Merch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Otvetstvenie" EntityType="Self.Otvetstvenie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Plan" EntityType="Self.Plan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Plan_Merch" Association="Self.FK_Plan_Merch">
+      <End Role="Merch" EntitySet="Merch" />
+      <End Role="Plan" EntitySet="Plan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Plan_Otvetstvenie" Association="Self.FK_Plan_Otvetstvenie">
+      <End Role="Otvetstvenie" EntitySet="Otvetstvenie" />
+      <End Role="Plan" EntitySet="Plan" />
+    </AssociationSet>
     <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
       <End Role="Role" EntitySet="Role" />
       <End Role="Users" EntitySet="Users" />

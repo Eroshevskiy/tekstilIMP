@@ -44,5 +44,12 @@ namespace tekstil_profi_m.pages
             Visibility = Visibility.Hidden;
             nacl.Show();
         }
+
+        private void rabClick(object sender, RoutedEventArgs e)
+        {
+            rabochie rab = new rabochie();
+            Visibility = Visibility.Hidden;
+            rab.Show();
+        }
     }
 }

@@ -23,5 +23,28 @@ namespace tekstil_profi_m.pages
         {
             InitializeComponent();
         }
+
+        
+
+        private void planClick(object sender, RoutedEventArgs e)
+        {
+            planRab plan = new planRab();
+            Visibility = Visibility.Hidden;
+            plan.Show();
+        }
+
+        private void mainClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            Visibility = Visibility.Hidden;
+            main.Show();
+        }
+
+        private void eticsClick(object sender, RoutedEventArgs e)
+        {
+            eticsRab etics = new eticsRab();
+            Visibility = Visibility.Hidden;
+            etics.Show();
+        }
     }
 }

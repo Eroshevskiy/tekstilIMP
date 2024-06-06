@@ -9,13 +9,37 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="material" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="razmer" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="color" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="photo" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="filePath" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Otvetstvenie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="doljnost" Type="nvarchar" MaxLength="50" />
+          <Property Name="photo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_merch" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="material" Type="nvarchar" MaxLength="50" />
+          <Property Name="razmer" Type="nvarchar" MaxLength="50" />
+          <Property Name="color" Type="nvarchar" MaxLength="50" />
+          <Property Name="photo" Type="nvarchar" MaxLength="50" />
+          <Property Name="filePath" Type="nvarchar" MaxLength="100" />
+          <Property Name="id_otvetst" Type="int" />
+          <Property Name="count" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -43,6 +67,30 @@
           <Property Name="password" Type="nvarchar" MaxLength="50" />
           <Property Name="id_role" Type="int" />
         </EntityType>
+        <Association Name="FK_Plan_Merch">
+          <End Role="Merch" Type="Self.Merch" Multiplicity="0..1" />
+          <End Role="Plan" Type="Self.Plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merch">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Plan">
+              <PropertyRef Name="id_merch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plan_Otvetstvenie">
+          <End Role="Otvetstvenie" Type="Self.Otvetstvenie" Multiplicity="0..1" />
+          <End Role="Plan" Type="Self.Plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Otvetstvenie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Plan">
+              <PropertyRef Name="id_otvetst" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -57,9 +105,19 @@
         </Association>
         <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Merch" EntityType="Self.Merch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Otvetstvenie" EntityType="Self.Otvetstvenie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plan" EntityType="Self.Plan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Plan_Merch" Association="Self.FK_Plan_Merch">
+            <End Role="Merch" EntitySet="Merch" />
+            <End Role="Plan" EntitySet="Plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plan_Otvetstvenie" Association="Self.FK_Plan_Otvetstvenie">
+            <End Role="Otvetstvenie" EntitySet="Otvetstvenie" />
+            <End Role="Plan" EntitySet="Plan" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="Users" EntitySet="Users" />
@@ -74,13 +132,41 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="razmer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="filePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Plan" Relationship="Self.FK_Plan_Merch" FromRole="Merch" ToRole="Plan" />
+        </EntityType>
+        <EntityType Name="Otvetstvenie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="doljnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Plan" Relationship="Self.FK_Plan_Otvetstvenie" FromRole="Otvetstvenie" ToRole="Plan" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_merch" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="razmer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="filePath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="id_otvetst" Type="Int32" />
+          <Property Name="count" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Merch" Relationship="Self.FK_Plan_Merch" FromRole="Plan" ToRole="Merch" />
+          <NavigationProperty Name="Otvetstvenie" Relationship="Self.FK_Plan_Otvetstvenie" FromRole="Plan" ToRole="Otvetstvenie" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -110,6 +196,30 @@
           <Property Name="id_role" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
         </EntityType>
+        <Association Name="FK_Plan_Merch">
+          <End Role="Merch" Type="Self.Merch" Multiplicity="0..1" />
+          <End Role="Plan" Type="Self.Plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Merch">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Plan">
+              <PropertyRef Name="id_merch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Plan_Otvetstvenie">
+          <End Role="Otvetstvenie" Type="Self.Otvetstvenie" Multiplicity="0..1" />
+          <End Role="Plan" Type="Self.Plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Otvetstvenie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Plan">
+              <PropertyRef Name="id_otvetst" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -124,9 +234,19 @@
         </Association>
         <EntityContainer Name="dipEntitie" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Merch" EntityType="Self.Merch" />
+          <EntitySet Name="Otvetstvenie" EntityType="Self.Otvetstvenie" />
+          <EntitySet Name="Plan" EntityType="Self.Plan" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Plan_Merch" Association="Self.FK_Plan_Merch">
+            <End Role="Merch" EntitySet="Merch" />
+            <End Role="Plan" EntitySet="Plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Plan_Otvetstvenie" Association="Self.FK_Plan_Otvetstvenie">
+            <End Role="Otvetstvenie" EntitySet="Otvetstvenie" />
+            <End Role="Plan" EntitySet="Plan" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="Users" EntitySet="Users" />
@@ -148,6 +268,32 @@
                 <ScalarProperty Name="color" ColumnName="color" />
                 <ScalarProperty Name="photo" ColumnName="photo" />
                 <ScalarProperty Name="filePath" ColumnName="filePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Otvetstvenie">
+            <EntityTypeMapping TypeName="Model.Otvetstvenie">
+              <MappingFragment StoreEntitySet="Otvetstvenie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="doljnost" ColumnName="doljnost" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plan">
+            <EntityTypeMapping TypeName="Model.Plan">
+              <MappingFragment StoreEntitySet="Plan">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_merch" ColumnName="id_merch" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="material" ColumnName="material" />
+                <ScalarProperty Name="razmer" ColumnName="razmer" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="filePath" ColumnName="filePath" />
+                <ScalarProperty Name="id_otvetst" ColumnName="id_otvetst" />
+                <ScalarProperty Name="count" ColumnName="count" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

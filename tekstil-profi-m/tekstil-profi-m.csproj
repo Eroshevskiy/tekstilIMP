@@ -106,6 +106,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="pages\AddMerches.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\addRab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,7 +122,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\merches.xaml">
+    <Page Include="pages\editRab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\eticsRab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,7 +138,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pages\planRab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\prosmPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\rabochie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,6 +178,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="models\Otvetstvenie.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\Plan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="models\Role.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -163,14 +193,23 @@
     <Compile Include="models\Users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="pages\AddMerches.xaml.cs">
+      <DependentUpon>AddMerches.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\addRab.xaml.cs">
+      <DependentUpon>addRab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\admin.xaml.cs">
       <DependentUpon>admin.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\EditMerch.xaml.cs">
       <DependentUpon>EditMerch.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\merches.xaml.cs">
-      <DependentUpon>merches.xaml</DependentUpon>
+    <Compile Include="pages\editRab.xaml.cs">
+      <DependentUpon>editRab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\eticsRab.xaml.cs">
+      <DependentUpon>eticsRab.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\nackladn.xaml.cs">
       <DependentUpon>nackladn.xaml</DependentUpon>
@@ -178,8 +217,17 @@
     <Compile Include="pages\pechNacladn.xaml.cs">
       <DependentUpon>pechNacladn.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pages\planRab.xaml.cs">
+      <DependentUpon>planRab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="pages\product.xaml.cs">
       <DependentUpon>product.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\prosmPlan.xaml.cs">
+      <DependentUpon>prosmPlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\rabochie.xaml.cs">
+      <DependentUpon>rabochie.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\rabotnick.xaml.cs">
       <DependentUpon>rabotnick.xaml</DependentUpon>
@@ -231,6 +279,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="photo\бэкграундд %281%29.webp" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -252,16 +301,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Resource Include="photo\простынь на резинке.jpeg" />
     <Resource Include="photo\простынь детская.jpg" />
     <Resource Include="photo\простынь 1,5 зеленый.jpg" />
@@ -293,6 +332,23 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="photo\photo otv\otv1.jpg" />
+    <Resource Include="photo\photo otv\otv2.jpeg" />
+    <Resource Include="photo\photo otv\otv3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

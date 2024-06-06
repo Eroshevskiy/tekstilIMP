@@ -39,18 +39,20 @@ namespace tekstil_profi_m.pages
 
         private void Foto(object sender, RoutedEventArgs e)
         {
-            string source = Environment.CurrentDirectory;
-            if (ofd.ShowDialog() == true)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files (*.jpg; *.jpeg; *.png)|*.jpg; *.jpeg; *.png|All Files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
             {
-                flag = true;
-                string sourthpath = ofd.SafeFileName;
-                newsourthpath = System.IO.Path.Combine(source.Replace("/bin/Debug", "/photo/"), sourthpath);
+                string selectedImagePath = openFileDialog.FileName;
                 // Проверка на null перед установкой изображения
-                if (ofd.FileName != null)
+                if (!string.IsNullOrEmpty(selectedImagePath))
                 {
-                    PreviewImage.Source = new BitmapImage(new Uri(ofd.FileName));
+                    // Отображаем выбранное изображение в предварительном просмотре
+                    PreviewImage.Source = new BitmapImage(new Uri(selectedImagePath));
+                    PreviewImage.Visibility = Visibility.Visible; // Показываем изображение
+                                                                  // Сохраняем абсолютный путь к выбранному изображению
+                    currentmerch.photo = selectedImagePath;
                 }
-                currentmerch.photo = $"/photo/{ofd.SafeFileName}";
             }
         }
         private void Save(object sender, RoutedEventArgs e)
@@ -110,9 +112,9 @@ namespace tekstil_profi_m.pages
 
         private void nazClick(object sender, RoutedEventArgs e)
         {
-            admin adm = new admin();
+            product prod = new product();
             Visibility = Visibility.Hidden;
-            adm.Show();
+            prod.Show();
         }
     }
 }

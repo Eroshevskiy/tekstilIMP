@@ -78,14 +78,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="tekstil-profi-m.exe" size="2704352">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="tekstil-profi-m.exe" size="3639776">
       <assemblyIdentity name="tekstil-profi-m" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>QwaZVMjTmG/EnfL5lY4qUAiOsV0hW6yIeNVzpXWxWFk=</dsig:DigestValue>
+        <dsig:DigestValue>3DXpZ8jsrL8jAfv7ph/zc0wK3cuyuQzJlFoYst1wCCM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -107,13 +107,13 @@
       <dsig:DigestValue>CabSpKm6yYNT6twBZzKHKM3v3aBYMgNzK0uSDYpHoWw=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="tekstil-profi-m.exe.config" size="1311">
+  <file name="tekstil-profi-m.exe.config" size="1329">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>feJjkhGJcExbIzpdBLUuZ7mqdf3KKEKuzxAa6y5CQTk=</dsig:DigestValue>
+      <dsig:DigestValue>a0eYKEb+14xwNGSIoEpmJY/4IDWgYd/vFFkAuxFzVVQ=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

@@ -5,8 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tekstil_profi_m.pages"
         mc:Ignorable="d"
-        Title="rabotnick" Height="450" Width="800">
+        Title="rabotnick" MinHeight="450" MinWidth="400" MaxHeight="450" MaxWidth="400">
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="d:\tekstil-profi-m\tekstil-profi-m\photo\бэкграундд (1).webp"/>
+
+        </Grid.Background>
+
+        <StackPanel Grid.Column="0"  >
+            <Image Source="/photo/logo.png" Width="150" Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+            <Button Height="50" Width="200" FontSize="16" Background="#FF3786E4" Margin="0,30,0,0" Cursor="Hand" Click="eticsClick"  >
+                <TextBlock Foreground="#EEEE">Этикетки</TextBlock>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            
+
+            <Button Height="50" Width="200" FontSize="16" Background="#FF3786E4" Margin="0,10,0,0" Cursor="Hand" Click="planClick"  >
+                <TextBlock Foreground="#EEEE">Просмотр плана работ</TextBlock>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Height="50" Width="200" FontSize="16" Background="#FF3786E4"  Margin="0,80,0,0" Cursor="Hand" Click="mainClick">
+                <TextBlock Foreground="#EEEE">Выйти</TextBlock>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </StackPanel>
+
     </Grid>
 </Window>

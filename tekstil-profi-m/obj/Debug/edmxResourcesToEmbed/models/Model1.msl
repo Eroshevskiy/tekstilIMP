@@ -14,6 +14,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Otvetstvenie">
+      <EntityTypeMapping TypeName="Model.Otvetstvenie">
+        <MappingFragment StoreEntitySet="Otvetstvenie">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="doljnost" ColumnName="doljnost" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plan">
+      <EntityTypeMapping TypeName="Model.Plan">
+        <MappingFragment StoreEntitySet="Plan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_merch" ColumnName="id_merch" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="material" ColumnName="material" />
+          <ScalarProperty Name="razmer" ColumnName="razmer" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="filePath" ColumnName="filePath" />
+          <ScalarProperty Name="id_otvetst" ColumnName="id_otvetst" />
+          <ScalarProperty Name="count" ColumnName="count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Role">
       <EntityTypeMapping TypeName="Model.Role">
         <MappingFragment StoreEntitySet="Role">

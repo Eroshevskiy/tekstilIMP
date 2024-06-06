@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using tekstil_profi_m.classes;
+using tekstil_profi_m.models;
 using static tekstil_profi_m.pages.nackladn;
 
 namespace tekstil_profi_m.pages
@@ -23,15 +25,24 @@ namespace tekstil_profi_m.pages
     public partial class pechNacladn : Window
     {
         private ObservableCollection<nackladn.OrderItem> orderItems;
-        private int OrderItemCount => orderItems.Count;
+        
+
+
+
 
         public pechNacladn(ObservableCollection<nackladn.OrderItem> orderItems)
         {
             InitializeComponent();
+            foreach (var orderItem in orderItems)
+            {
+                orderItem.OtvetCollection = new ObservableCollection<Otvetstvenie>(dboconnect.modeldb.Otvetstvenie);
+            }
             this.orderItems = orderItems;
             OrderLV.ItemsSource = orderItems;
-            
+
         }
+
+        
 
         private void ydalClick(object sender, RoutedEventArgs e)
         {
@@ -46,52 +57,73 @@ namespace tekstil_profi_m.pages
             }
         }
 
-        private void PrintButton(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void PrintButton_Click(object sender, RoutedEventArgs e)
         {
             RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap((int)this.ActualWidth, (int)this.ActualHeight, 96, 96, PixelFormats.Pbgra32);
-    renderTargetBitmap.Render(this);
+            renderTargetBitmap.Render(this);
 
-    // Создаем Image, чтобы отобразить RenderTargetBitmap
-    Image image = new Image();
-    image.Source = renderTargetBitmap;
+            
+            Image image = new Image();
+            image.Source = renderTargetBitmap;
 
-    // Создаем PrintDialog для печати
-    PrintDialog printDialog = new PrintDialog();
+            
+            PrintDialog printDialog = new PrintDialog();
 
-    if (printDialog.ShowDialog() == true)
-    {
-        // Устанавливаем ориентацию печати на горизонтальную
-        printDialog.PrintTicket.PageOrientation = System.Printing.PageOrientation.Landscape;
+            if (printDialog.ShowDialog() == true)
+            {
+                
+                printDialog.PrintTicket.PageOrientation = System.Printing.PageOrientation.Landscape;
 
-        // Печать изображения
-        printDialog.PrintVisual(image, "Print Page");
+                
+                printDialog.PrintVisual(image, "Print Page");
 
-        // Если вы также хотите сохранить изображение, то можно использовать следующий код:
-        // SaveImage(renderTargetBitmap);
-    }
+        
+            }
 
 
 
         }
+        
 
-        private void SaveImage(RenderTargetBitmap renderTargetBitmap)
+        private void SavePlan(object sender, RoutedEventArgs e)
         {
-            // Создаем кодек для сохранения изображения
-            BitmapEncoder encoder = new PngBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
-
-            // Сохраняем изображение
-            using (FileStream stream = new FileStream("page_image.png", FileMode.Create))
+            try
             {
-                encoder.Save(stream);
+                using (var context = new dipEntitie())
+                {
+                    foreach (var orderItem in orderItems)
+                    {
+                        var order = new Plan
+                        {
+
+                            id_merch = orderItem.MerchId,
+                            id_otvetst = orderItem.OtvetPoint?.id ?? 1,
+                            material = orderItem.MerchMaterial,
+                            name = orderItem.MerchName,
+                            razmer = orderItem.MerchRazmer,
+                            color = orderItem.MerchColor,
+                            photo = orderItem.PhotoPath,
+                            count = orderItem.count 
+
+                        };
+
+                        context.Plan.Add(order);
+
+                       
+                    }
+
+                    context.SaveChanges();
+                }
+                MessageBox.Show("План сохранен успешно!", "Сохранение успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка при сохранении плана в базу данных: {ex.Message}", "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-
+        
     }
 }

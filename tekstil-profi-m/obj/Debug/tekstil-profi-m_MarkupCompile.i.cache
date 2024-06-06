@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\tekstil-profi-m\tekstil-profi-m\App.xaml
-8-2104203561
+141798781580
 2853957467
-221171404599
+30-1298424158
 18457826522
-MainWindow.xaml;pages\admin.xaml;pages\EditMerch.xaml;pages\merches.xaml;pages\nackladn.xaml;pages\pechNacladn.xaml;pages\product.xaml;pages\rabotnick.xaml;
+MainWindow.xaml;pages\AddMerches.xaml;pages\addRab.xaml;pages\admin.xaml;pages\EditMerch.xaml;pages\editRab.xaml;pages\eticsRab.xaml;pages\nackladn.xaml;pages\pechNacladn.xaml;pages\planRab.xaml;pages\product.xaml;pages\prosmPlan.xaml;pages\rabochie.xaml;pages\rabotnick.xaml;
 
-True
+False
 

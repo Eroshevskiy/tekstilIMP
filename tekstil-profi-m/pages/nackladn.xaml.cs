@@ -35,18 +35,7 @@ namespace tekstil_profi_m.pages
             UpdateMerchCollection();
         }
 
-        private void MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (lv.SelectedItem == null)
-            {
-                e.Handled = true;
-            }
-            else
-            {
-                Merch selectedMerch = lv.SelectedItem as Merch;
-                MessageBox.Show($"Selected Merch:\nName: {selectedMerch.name}\nManufacturer: {selectedMerch.material}\nPrice: {selectedMerch.razmer}", "Merchandise Information", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
+        
 
         private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
         {
@@ -103,7 +92,7 @@ namespace tekstil_profi_m.pages
                     MerchRazmer = selectedMerch.razmer,
                     MerchColor = selectedMerch.color,
                     PhotoPath = selectedMerch.photo,
-                    Quantity = 1,
+                    
                     
                 };
 
@@ -127,11 +116,7 @@ namespace tekstil_profi_m.pages
 
         public class OrderItem
         {
-            
-            
-            
-            
-            
+       
             public string name { get; set; }
             public string material { get; set; }
             public string razmer { get; set; }
@@ -143,6 +128,10 @@ namespace tekstil_profi_m.pages
             public int Quantity { get; set; }
             public string MerchMaterial { get; set; }
             public string PhotoPath { get; set; }
+            public string EticsPath { get; set; }
+            public ObservableCollection<Otvetstvenie> OtvetCollection { get; set; }
+            public Otvetstvenie OtvetPoint { get; set; }
+            public string count { get; set; }
         }
 
         private void userClick(object sender, RoutedEventArgs e)
@@ -150,6 +139,17 @@ namespace tekstil_profi_m.pages
             admin adm = new admin();
             Visibility = Visibility.Hidden;
             adm.Show();
+        }
+
+        private void MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        private void checkPlan(object sender, RoutedEventArgs e)
+        {
+            prosmPlan prosm = new prosmPlan();
+            Visibility = Visibility.Hidden;
+            prosm.Show();
         }
     }
 }

@@ -34,6 +34,8 @@ namespace tekstil_profi_m.models
         public static Users CurrentUser = null;
 
         public virtual DbSet<Merch> Merch { get; set; }
+        public virtual DbSet<Otvetstvenie> Otvetstvenie { get; set; }
+        public virtual DbSet<Plan> Plan { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }

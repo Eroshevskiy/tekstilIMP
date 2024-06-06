@@ -31,7 +31,7 @@ namespace tekstil_profi_m.pages
             InitializeComponent();
 
             merchCollection = new ObservableCollection<Merch>(dipEntitie.GetContext().Merch.ToList());
-            BDWorkers.ItemsSource = merchCollection;
+            BDproduct.ItemsSource = merchCollection;
         }
 
         private void EticPech(object sender, RoutedEventArgs e)
@@ -40,25 +40,26 @@ namespace tekstil_profi_m.pages
             if (button != null)
             {
                 // Получаем выбранный объект из DataGrid
-                var selectedMerch = BDWorkers.SelectedItem as dynamic;
+                var selectedMerch = BDproduct.SelectedItem as Merch; // Убедитесь, что здесь тип Merch
                 if (selectedMerch != null)
                 {
-                    // Получаем путь к файлу из выбранного объекта
+                    // Получаем путь к файлу этикетки из выбранного объекта
                     string filePath = selectedMerch.filePath;
 
                     // Проверяем, существует ли файл по указанному пути
                     if (File.Exists(filePath))
                     {
-                        // Открываем файл
+                        // Открываем файл этикетки
                         Process.Start(filePath);
                     }
                     else
                     {
-                        MessageBox.Show("Файл не найден.");
+                        MessageBox.Show("Файл этикетки не найден.");
                     }
                 }
             }
         }
+
 
 
 
@@ -70,32 +71,20 @@ namespace tekstil_profi_m.pages
 
         }
 
-        private void Delete(object sender, RoutedEventArgs e)
-        {
-            var merchDell = BDWorkers.SelectedItems.Cast<Merch>().ToList();
-
-            if (MessageBox.Show($"Вы точно хотите удалить следующие {merchDell.Count()} элементов?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    IEnumerable<Merch> enumerable = dipEntitie.GetContext().Merch.RemoveRange((IEnumerable<Merch>)merchDell);
-                    dipEntitie.GetContext().SaveChanges();
-                    MessageBox.Show("Данные удалены!");
-
-                    BDWorkers.ItemsSource = dipEntitie.GetContext().Merch.ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
-            }
-        }
+        
 
         private void nazClick(object sender, RoutedEventArgs e)
         {
             admin adm = new admin();
             Visibility = Visibility.Hidden;
             adm.Show();
+        }
+
+        private void Add(object sender, RoutedEventArgs e)
+        {
+            AddMerches add = new AddMerches(null);
+            this.Visibility = Visibility.Hidden;
+            add.Show();
         }
     }
 }

@@ -5,28 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tekstil_profi_m.pages"
         mc:Ignorable="d"
-        Title="EditMerch" Height="450" Width="800">
-    <Grid Background="#FFE2D2D2">
+        Title="EditMerch" MinHeight="450" MinWidth="400" MaxHeight="450" MaxWidth="400">
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="d:\tekstil-profi-m\tekstil-profi-m\photo\бэкграундд (1).webp"/>
 
-        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel Margin="10">
-                <TextBlock Margin="0 2 0 10">Название</TextBlock>
-                <TextBlock Margin="0 4 0 10">Материал</TextBlock>
-                <TextBlock Margin="0 4 0 10">Размер</TextBlock>
-                <TextBlock Margin="0 5 0 10">Цвет</TextBlock>
-                
-            </StackPanel>
-            <StackPanel Margin="10">
-                <TextBox Margin="0 0 0 10" Text="{Binding name}"></TextBox>
-                <TextBox Margin="0 0 0 10" Text="{Binding material}"></TextBox>
-                <TextBox Margin="0 0 0 10" Text="{Binding razmer}"></TextBox>
-                <TextBox Margin="0 0 0 10" Text="{Binding color}"></TextBox>
-                
-                <Button Click="Foto" Width="auto">Выбрать фото</Button>
-                <Image Width="100" Name="PreviewImage" Source="{Binding photo}"></Image>
-                <Button Width="auto" Click="Save">Сохранить</Button>
-            </StackPanel>
-        </WrapPanel>
-        <Button VerticalAlignment="Top" HorizontalAlignment="Right" Click="nazClick">Назад</Button>
+        </Grid.Background>
+
+        <Border CornerRadius="30" BorderBrush="Transparent" Background="#eeee" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"  >
+                <StackPanel Margin="10" >
+                    <TextBlock Margin="0 2 0 10" FontWeight="Bold" Foreground="#FF3786E4"   FontSize="16">Название</TextBlock>
+                    <TextBlock Margin="0 2 0 10" FontWeight="Bold" Foreground="#FF3786E4"   FontSize="16">Материал</TextBlock>
+                    <TextBlock Margin="0 0 0 10" FontWeight="Bold" Foreground="#FF3786E4"  FontSize="16">Размер</TextBlock>
+                    <TextBlock Margin="0 2 0 10" FontWeight="Bold" Foreground="#FF3786E4"  FontSize="16">Цвет</TextBlock>
+
+                </StackPanel>
+                <StackPanel Margin="10">
+                    <TextBox Margin="0 0 0 10" Text="{Binding name}" Height="23"></TextBox>
+                    <TextBox Margin="0 0 0 10" Text="{Binding material}" Height="23"></TextBox>
+                    <TextBox Margin="0 0 0 10" Text="{Binding razmer}" Height="23"></TextBox>
+                    <TextBox Margin="0 0 0 10" Text="{Binding color}" Height="23"></TextBox>
+
+                    <Button Click="Foto" Width="100" Height="23" Background="#FF3786E4" Foreground="#eeee">Выбрать фото</Button>
+                    <Image Width="100" Name="PreviewImage" Source="{Binding photo}"></Image>
+                    <Button Width="100" Height="23" Click="Save" Background="#FF3786E4" Foreground="#eeee" Margin="0,10,0,0">Сохранить</Button>
+                    <Button Width="100" Height="23" Click="nazClick" Margin="0,10,0,0" Background="#FF3786E4" Foreground="#eeee" >Назад</Button>
+                </StackPanel>
+            </WrapPanel>
+        </Border>
+        
     </Grid>
 </Window>

@@ -9,6 +9,12 @@
             <!-- Другие свойства стиля для хедера столбца -->
         </Style>
 
+        <Style TargetType="Border" x:Key="RoundedBorderStyle">
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Padding" Value="5"/>
+            
+        </Style>
+
 
     </Application.Resources>
 </Application>

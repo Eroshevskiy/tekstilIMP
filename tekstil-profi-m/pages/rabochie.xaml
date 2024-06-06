@@ -1,0 +1,124 @@
+﻿<Window x:Class="tekstil_profi_m.pages.rabochie"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tekstil_profi_m.pages"
+        mc:Ignorable="d"
+        Title="rabochie" MinHeight="645" MinWidth="516" MaxHeight="645" MaxWidth="516">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <DataGrid Name="BDotvet" AutoGenerateColumns="False" GridLinesVisibility="None" CanUserResizeColumns="False"
+          CanUserResizeRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" Background="#FFE2D2D2" >
+
+            <DataGrid.Resources>
+                <!-- Создаем общий стиль для ячеек -->
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="#FFE2D2D2"/>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <!-- Колонки с текстовыми данными -->
+                <DataGridTextColumn Header="Имя" Binding="{Binding name}" FontSize="20"  FontWeight="Bold" Foreground="#FF3786E4">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="#FF3786E4"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Должность" Binding="{Binding doljnost}" Width="auto" FontSize="20" FontWeight="Bold" Foreground="#FF3786E4">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="#FF3786E4"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+
+                
+
+                <!-- Колонка с фото -->
+                <DataGridTemplateColumn Header="Фото" Width="auto">
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="#FF3786E4"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Width="150">
+                                <Image.Source>
+                                    <Binding Path="photo">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>/photo/logo.png</ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+
+                <!-- Колонки с кнопками -->
+                
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="BntEdit" Width="100" Background="#FFE2D2D2" Foreground="#FF3786E4" FontSize="14" Content="Редактировать" Click="Edit_Click" Cursor="Hand" >
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#FFE2D2D2">
+            <Button Margin="0,0,5,0" Width="150" Height="40" FontSize="16" FontWeight="Bold" Foreground="White"  Background="#FF3786E4" Cursor="Hand" Click="Add"   >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                Добавить
+            </Button>
+
+            <Button Width="150" Height="40" FontSize="16" FontWeight="Bold" Foreground="White" Background="#FF3786E4"  Click="nazClick" Cursor="Hand"  >
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                Назад
+            </Button>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

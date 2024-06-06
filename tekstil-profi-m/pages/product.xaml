@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tekstil_profi_m.pages"
         mc:Ignorable="d"
-        Title="product" MinHeight="450" MinWidth="877" MaxHeight="450" MaxWidth="877">
+        Title="product" MinHeight="650" MaxHeight="650" MinWidth="1040" MaxWidth="1040">
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid Name="BDWorkers" AutoGenerateColumns="False" GridLinesVisibility="None" CanUserResizeColumns="False"
+        
+        
+        <DataGrid Name="BDproduct" AutoGenerateColumns="False" GridLinesVisibility="None" CanUserResizeColumns="False"
           CanUserResizeRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" Background="#FFE2D2D2" >
 
             <DataGrid.Resources>
@@ -23,7 +25,7 @@
 
             <DataGrid.Columns>
                 <!-- Колонки с текстовыми данными -->
-                <DataGridTextColumn Header="Название" Binding="{Binding name}" Width="auto" FontSize="14" FontWeight="Bold" Foreground="#FF3786E4">
+                <DataGridTextColumn Header="Название" Binding="{Binding name}" FontSize="20" FontWeight="Bold" Foreground="#FF3786E4">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Foreground" Value="White"/>
@@ -32,7 +34,7 @@
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Материал" Binding="{Binding material}" Width="auto" FontSize="14" FontWeight="Bold" Foreground="#FF3786E4">
+                <DataGridTextColumn Header="Материал" Binding="{Binding material}" Width="auto" FontSize="20" FontWeight="Bold" Foreground="#FF3786E4">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Foreground" Value="White"/>
@@ -41,7 +43,7 @@
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Размер" Binding="{Binding razmer}" Width="auto" FontSize="14" FontWeight="Bold" Foreground="#FF3786E4">
+                <DataGridTextColumn Header="Размер" Binding="{Binding razmer}" Width="auto" FontSize="20" FontWeight="Bold" Foreground="#FF3786E4">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Foreground" Value="White"/>
@@ -50,7 +52,7 @@
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Цвет" Binding="{Binding color}" Width="auto" FontSize="14" FontWeight="Bold" Foreground="#FF3786E4">
+                <DataGridTextColumn Header="Цвет" Binding="{Binding color}" Width="auto" FontSize="20" FontWeight="Bold" Foreground="#FF3786E4">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Foreground" Value="White"/>
@@ -69,7 +71,7 @@
                     </DataGridTemplateColumn.HeaderStyle>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Width="100">
+                            <Image Width="150">
                                 <Image.Source>
                                     <Binding Path="photo">
                                         <Binding.TargetNullValue>
@@ -117,28 +119,14 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Name="BntDell" Width="100" Background="#FFE2D2D2" Foreground="#FF3786E4" FontSize="14" Click="Delete" Content="Удалить" Cursor="Hand" >
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button" >
-                                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                
             </DataGrid.Columns>
         </DataGrid>
 
 
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#FFE2D2D2">
-            <Button Margin="0,0,5,0" Width="150" Height="40" FontSize="16" FontWeight="Bold" Foreground="White" Background="#FF3786E4" Cursor="Hand"   >
+            <Button Margin="0,0,5,0" Width="150" Height="40" FontSize="16" FontWeight="Bold" Foreground="White"  Background="#FF3786E4" Cursor="Hand" Click="Add"   >
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">
@@ -148,18 +136,8 @@
                 </Button.Template>
                 Добавить
             </Button>
-            <Button Margin="0,0,5,0" Width="150" Height="40" FontSize="16" FontWeight="Bold" Foreground="White" Background="#FF3786E4" Cursor="Hand"  >
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-                История входа
-            </Button>
-
-            <Button Width="150" Height="40" FontSize="16" FontWeight="Bold" Foreground="White" Background="#FF3786E4" Margin="385,0,0,0" Click="nazClick" Cursor="Hand"  >
+            
+            <Button Width="150" Height="40" FontSize="16" FontWeight="Bold" Foreground="White" Background="#FF3786E4"  Click="nazClick" Cursor="Hand"  >
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">

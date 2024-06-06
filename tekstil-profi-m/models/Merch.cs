@@ -14,6 +14,12 @@ namespace tekstil_profi_m.models
     
     public partial class Merch
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Merch()
+        {
+            this.Plan = new HashSet<Plan>();
+        }
+    
         public int id { get; set; }
         public string name { get; set; }
         public string material { get; set; }
@@ -21,5 +27,8 @@ namespace tekstil_profi_m.models
         public string color { get; set; }
         public string photo { get; set; }
         public string filePath { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Plan> Plan { get; set; }
     }
 }

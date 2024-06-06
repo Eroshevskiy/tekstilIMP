@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tekstil_profi_m.pages"
         mc:Ignorable="d"
-        Title="admin" MinHeight="450" MinWidth="400" MaxHeight="450" MaxWidth="400">
+        Title="admin" MinHeight="500" MinWidth="400" MaxHeight="500" MaxWidth="400">
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="d:\tekstil-profi-m\tekstil-profi-m\photo\бэкграундд (1).webp"/>
 
-        <StackPanel Grid.Column="0"  Background="#FFE2D2D2">
+        </Grid.Background>
+
+        <StackPanel Grid.Column="0"  >
             <Image Source="/photo/logo.png" Width="150" Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
             <Button Height="50" Width="200" FontSize="16" Background="#FF3786E4" Margin="0,30,0,0" Cursor="Hand" Click="productClick"  >
@@ -22,19 +25,10 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Height="50" Width="200" FontSize="16" Background="#FF3786E4" Margin="0,10,0,0" Cursor="Hand"  >
-                <TextBlock Foreground="#EEEE">Инструкции</TextBlock>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+            
 
             <Button Height="50" Width="200" FontSize="16" Background="#FF3786E4" Margin="0,10,0,0" Cursor="Hand" Click="nacklClick"  >
-                <TextBlock Foreground="#EEEE">Создать накладную</TextBlock>
+                <TextBlock Foreground="#EEEE">Создать чек-лист</TextBlock>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">
@@ -43,7 +37,17 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Height="50" Width="200" FontSize="16" Background="#FF3786E4"  Margin="0,35,0,0" Cursor="Hand" Click="mainClick">
+            <Button Height="50" Width="200" FontSize="16" Background="#FF3786E4" Margin="0,10,0,0" Cursor="Hand" Click="rabClick"  >
+                <TextBlock Foreground="#EEEE">Работники</TextBlock>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Height="50" Width="200" FontSize="16" Background="#FF3786E4"  Margin="0,80,0,0" Cursor="Hand" Click="mainClick">
                 <TextBlock Foreground="#EEEE">Выйти</TextBlock>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
